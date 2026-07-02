@@ -81,7 +81,6 @@ namespace DigitalWallet.ProgramSystem
                         Console.WriteLine("Succsseful operation");
                         Console.WriteLine($"Deposit : {amount}");
                         Console.WriteLine($"Balance : {user.Wallet.Balance()}");
-                        user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit", amount, DateTime.Now));
                     }
                     catch (ArgumentException ex)
                     {
@@ -104,7 +103,6 @@ namespace DigitalWallet.ProgramSystem
                         Console.WriteLine("Succsseful operation");
                         Console.WriteLine($"Withdraw : {amount}");
                         Console.WriteLine($"Balance : {user.Wallet.Balance()}");
-                        user.Wallet.transactionHistory.Add(new TransactionHistory("Withdraw", amount, DateTime.Now));
 
                     }
                     catch (ArgumentException ex)

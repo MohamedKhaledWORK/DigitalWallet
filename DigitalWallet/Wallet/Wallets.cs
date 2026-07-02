@@ -30,12 +30,16 @@ namespace DigitalWallet.Wallet
         {
             if (amount < 0) { throw new ArgumentException("CanNot Deposit Amount < 0"); }
             balance += amount;
+            user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit", amount, DateTime.Now));
+
         }
         public void Wthdraw(decimal amount)
         {
             if (balance < amount) { throw new ArgumentException("Not enough balance in your Wallet"); }
             if (amount < 0) { throw new ArgumentException("Cant Withdraw Negative Amount"); }
             balance -= amount;
+            user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit", amount, DateTime.Now));
+
         }
     }
 }
