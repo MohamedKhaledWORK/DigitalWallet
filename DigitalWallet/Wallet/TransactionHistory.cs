@@ -8,17 +8,18 @@ namespace DigitalWallet.Wallet
 {
     public class TransactionHistory
     {
-        int id=0;
+        private static int _nextId = 1;     // Static counter
+        int id;
         string Operation;
         decimal Amount;
         DateTime dateTime;
 
         public TransactionHistory(string Operation, decimal amount,DateTime dateTime) 
         {
-            ++id;
+            id= _nextId++; // Assign current value and increment for next transaction
             this.Operation = Operation;
             this.Amount = amount;   
-            dateTime = DateTime.Now;
+            this.dateTime = dateTime;
         }
      
         public void PrintTransaction()

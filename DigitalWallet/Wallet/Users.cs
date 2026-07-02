@@ -8,24 +8,24 @@ namespace DigitalWallet.Wallet
 {
     public class Users
     {
-        public int id;
-        public string FirstName ;
-        public string LastName ;
-        public int age;
+        public int id { get; }
+        public string FirstName { get; }
+        public string LastName { get; }
+        public int age { get; }
         public Wallets Wallet;
         //default constructor that only create new user 
-        public Users(string fname,string lname,int age) 
+        public Users(string fname,string lname,int Age) 
         {
-          if (age < 18)
+          if (Age < 18)
             {
                 throw new ArgumentException("User must be at least 18 years old.");
             }
             this.FirstName = fname;
             this.LastName = lname;
-            this.age = age;
+            this.age = Age;
 
         }
-        public void CreateWallet( decimal initialBalance)
+        public void CreateWallet(decimal initialBalance)
         { 
 
             if (initialBalance < 0)

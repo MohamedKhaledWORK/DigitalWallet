@@ -22,14 +22,20 @@ namespace DigitalWallet.Wallet
         {
             Console.WriteLine($"User: {user.FirstName} {user.LastName}, Balance: {balance}");
         }
-        public decimal getbalance()
+        public decimal Balance()
         {
             return balance;
         }
-        public void EditBalance (decimal amount)
+        public void Depoist(decimal amount)
         {
-            balance = amount;
-            Console.WriteLine("Balance Updated"); 
-       }
+            if (amount < 0) { throw new ArgumentException("CanNot Deposit Amount < 0"); }
+            balance += amount;
+        }
+        public void Wthdraw(decimal amount)
+        {
+            if (balance < amount) { throw new ArgumentException("Not enough balance in your Wallet"); }
+            if (amount < 0) { throw new ArgumentException("Cant Withdraw Negative Amount"); }
+            balance -= amount;
+        }
     }
 }

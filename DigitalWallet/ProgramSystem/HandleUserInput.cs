@@ -17,7 +17,8 @@ namespace DigitalWallet.ProgramSystem
             switch (choice)
             {
                 case 1:
-                    string? fName,lName;
+                    #region Create User Wallet
+                    string? fName, lName;
                     bool flag;
                     int age;
                     decimal amount, newbalance, initialbalance;
@@ -42,27 +43,32 @@ namespace DigitalWallet.ProgramSystem
                     } while (!flag || age < 0);
                     try
                     {
-                         user = new Users(fName, lName, age);
+                        user = CreateUser.CreateNewUser(fName, lName, age);
                         Console.WriteLine("✅ User created successfully!");
-                        Console.WriteLine($"Name: {user.FirstName} {user.LastName}, Age: {user.age}");
+                       user.ToString();
                         do
                         {
                             Console.WriteLine("Enter initial balance : ");
                             flag = decimal.TryParse(Console.ReadLine(), out initialbalance);
                         } while (!flag || initialbalance < 0);
-                        user.CreateWallet(initialbalance);
+                        CreateWallet.CreateNewWallet(user,initialbalance);
                         Console.WriteLine("✅ Wallet created successfully!");
-                       user.Wallet.WalletInfo();
                     }
                     catch (ArgumentException ex)
                     {
                         Console.WriteLine($"❌ Failed to create user: {ex.Message}");
-                    }
-                        break;
+                    } 
+                    #endregion
+                    break;
                 case 2:
-                     user.Wallet.WalletInfo();
+                    #region Show Wallet Info
+                    if (user == null) { Console.WriteLine("User doesn't exist "); break; }
+
+                    user.Wallet.WalletInfo(); 
+                    #endregion
                     break;
                 case 3:
+                    #region Deposit
                     do
                     {
                         Console.WriteLine("Enter Amount You Want To deposit : ");
@@ -70,19 +76,21 @@ namespace DigitalWallet.ProgramSystem
                     } while (!flag || amount < 0);
                     try
                     {
-                        newbalance = manageWallet.Depoist(amount, user.Wallet.getbalance());
-                        user.Wallet.EditBalance(newbalance);
+                        if (user == null) { Console.WriteLine("User doesn't exist "); break; }
+                        user.Wallet.Depoist(amount);
                         Console.WriteLine("Succsseful operation");
                         Console.WriteLine($"Deposit : {amount}");
-                        Console.WriteLine($"Balance : {user.Wallet.getbalance()}");
-                        user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit",amount,DateTime.Now));
+                        Console.WriteLine($"Balance : {user.Wallet.Balance()}");
+                        user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit", amount, DateTime.Now));
                     }
-                    catch(ArgumentException ex) 
+                    catch (ArgumentException ex)
                     {
-                        Console.WriteLine($"Failed operation { ex.Message}");
+                        Console.WriteLine($"Failed operation {ex.Message}");
                     }
-                    break;
+                    break; 
+                #endregion
                 case 4:
+                    #region Withdraw
                     do
                     {
                         Console.WriteLine("Enter Amount You Want To Withdraw : ");
@@ -90,21 +98,27 @@ namespace DigitalWallet.ProgramSystem
                     } while (!flag || amount < 0);
                     try
                     {
-                        newbalance = manageWallet.Wthdraw(amount, user.Wallet.getbalance());
-                        user.Wallet.EditBalance(newbalance);
+
+                        if (user == null) { Console.WriteLine("User doesn't exist "); break; }
+                        user.Wallet.Wthdraw(amount);
                         Console.WriteLine("Succsseful operation");
                         Console.WriteLine($"Withdraw : {amount}");
-                        Console.WriteLine($"Balance : {user.Wallet.getbalance()}");
+                        Console.WriteLine($"Balance : {user.Wallet.Balance()}");
                         user.Wallet.transactionHistory.Add(new TransactionHistory("Withdraw", amount, DateTime.Now));
 
                     }
                     catch (ArgumentException ex)
                     {
                         Console.WriteLine($"Failed operation {ex.Message}");
-                    }
+                    } 
+                    #endregion
                     break;
                 case 5:
-                    manageWallet.TransactionHistory(user.Wallet.transactionHistory);
+                    #region Transaction Info
+
+                    if (user == null) { Console.WriteLine("User doesn't exist "); break; }
+                    manageWallet.TransactionHistory(user.Wallet.transactionHistory); 
+                    #endregion
                     break;
             }
 
