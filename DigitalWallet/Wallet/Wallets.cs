@@ -9,8 +9,8 @@ namespace DigitalWallet.Wallet
     public class Wallets
     {
         Users user;
-        decimal balance;
-        List<TransactionHistory> transactionHistory;
+        private decimal balance;
+        public List<TransactionHistory> transactionHistory;
         public Wallets(Users user,decimal initialBalance)
         {
             this.user = user;
@@ -22,5 +22,14 @@ namespace DigitalWallet.Wallet
         {
             Console.WriteLine($"User: {user.FirstName} {user.LastName}, Balance: {balance}");
         }
+        public decimal getbalance()
+        {
+            return balance;
+        }
+        public void EditBalance (decimal amount)
+        {
+            balance = amount;
+            Console.WriteLine("Balance Updated"); 
+       }
     }
 }

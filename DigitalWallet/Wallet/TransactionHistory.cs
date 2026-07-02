@@ -8,22 +8,19 @@ namespace DigitalWallet.Wallet
 {
     public class TransactionHistory
     {
-        int id;
+        int id=0;
         string Operation;
         decimal Amount;
         DateTime dateTime;
 
-        public TransactionHistory(decimal initialBalance) 
+        public TransactionHistory(string Operation, decimal amount,DateTime dateTime) 
         {
-         
-        }
-        public void AddTransaction(string operation, decimal amount)
-        {
-            id++;
-            Operation = operation;
-            Amount = amount;
+            ++id;
+            this.Operation = Operation;
+            this.Amount = amount;   
             dateTime = DateTime.Now;
         }
+     
         public void PrintTransaction()
         {
             Console.WriteLine($"Transaction ID: {id}, Operation: {Operation}, Amount: {Amount}, Date and Time: {dateTime}");
