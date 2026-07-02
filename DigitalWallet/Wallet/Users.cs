@@ -9,10 +9,10 @@ namespace DigitalWallet.Wallet
     public class Users
     {
         public int id;
-        string FirstName ;
-        string LastName ;
-        int age;
-        Wallet Wallet;
+        public string FirstName ;
+        public string LastName ;
+        public int age;
+        public Wallets Wallet;
         //default constructor that only create new user 
         public Users(string fname,string lname,int age) 
         {
@@ -23,14 +23,16 @@ namespace DigitalWallet.Wallet
             this.FirstName = fname;
             this.LastName = lname;
             this.age = age;
+
         }
-        public void CreateWallet(decimal initialBalance)
-        {
+        public void CreateWallet( decimal initialBalance)
+        { 
+
             if (initialBalance < 0)
             {
                 throw new ArgumentException("Initial balance cannot be negative.");
             }
-            Wallet = new Wallet(initialBalance);
+            Wallet = new Wallets(this,initialBalance);
         }
     }
 }
