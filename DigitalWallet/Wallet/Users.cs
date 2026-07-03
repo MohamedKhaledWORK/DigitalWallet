@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DigitalWallet.Wallet
 {
-    public class Users
+    public class User
     {
         public int id { get; }
         public string FirstName { get; }
         public string LastName { get; }
         public int age { get; }
-        public Wallets Wallet;
+        public Wallet Wallet { get; set; }
         //default constructor that only create new user 
-        public Users(string fname,string lname,int Age) 
+        public User(string fname,string lname,int Age) 
         {
           if (Age < 18)
             {
@@ -32,7 +32,7 @@ namespace DigitalWallet.Wallet
             {
                 throw new ArgumentException("Initial balance cannot be negative.");
             }
-            Wallet = new Wallets(this,initialBalance);
+            Wallet = new Wallet(this,initialBalance);
         }
     }
 }

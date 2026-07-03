@@ -22,9 +22,9 @@ namespace DigitalWallet.Wallet
             this.dateTime = dateTime;
         }
      
-        public void PrintTransaction()
+        public override string ToString()
         {
-            Console.WriteLine($"Transaction ID: {id}, Operation: {Operation}, Amount: {Amount}, Date and Time: {dateTime}");
+            return $"Transaction ID: {id}, Operation: {Operation}, Amount: {Amount}, Date and Time: {dateTime}";
         }
     }
 }

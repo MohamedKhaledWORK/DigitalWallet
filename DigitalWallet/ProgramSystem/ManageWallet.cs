@@ -14,7 +14,7 @@ namespace DigitalWallet.ProgramSystem
         {
             foreach (var transaction in transactionHistories)
             {
-                transaction.PrintTransaction();
+                Console.WriteLine(transaction.ToString());
             }
         }
 

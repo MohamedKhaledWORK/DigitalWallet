@@ -10,7 +10,7 @@ namespace DigitalWallet.ProgramSystem
 {
     public static  class CreateWallet
     {
-        public static void CreateNewWallet(Users user,decimal initialbalance) 
+        public static void CreateNewWallet(User user,decimal initialbalance) 
         {
              user.CreateWallet(initialbalance);
         }

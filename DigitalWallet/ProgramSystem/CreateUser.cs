@@ -9,10 +9,10 @@ namespace DigitalWallet.ProgramSystem
 {
     public static class CreateUser
     {
-        public static Users CreateNewUser(string firstName, string lastName, int Age)
+        public static User CreateNewUser(string firstName, string lastName, int Age)
         {
 
-            return new Users(firstName, lastName , Age);
+            return new User(firstName, lastName , Age);
         }
        
     }

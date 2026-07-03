@@ -6,40 +6,41 @@ using System.Threading.Tasks;
 
 namespace DigitalWallet.Wallet
 {
-    public class Wallets
+    public class Wallet
     {
-        Users user;
+        User user;
         private decimal balance;
-        public List<TransactionHistory> transactionHistory;
-        public Wallets(Users user,decimal initialBalance)
+        public List<TransactionHistory> transactionHistory { get; set; }
+        public Wallet(User user,decimal initialBalance)
         {
             this.user = user;
             balance = initialBalance;
             transactionHistory = new List<TransactionHistory>();
         }
 
-        public void WalletInfo()
-        {
-            Console.WriteLine($"User: {user.FirstName} {user.LastName}, Balance: {balance}");
-        }
+        
         public decimal Balance()
         {
             return balance;
         }
-        public void Depoist(decimal amount)
+        public void Deposit(decimal amount)
         {
             if (amount < 0) { throw new ArgumentException("CanNot Deposit Amount < 0"); }
             balance += amount;
             user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit", amount, DateTime.Now));
 
         }
-        public void Wthdraw(decimal amount)
+        public void Withdraw(decimal amount)
         {
             if (balance < amount) { throw new ArgumentException("Not enough balance in your Wallet"); }
             if (amount < 0) { throw new ArgumentException("Cant Withdraw Negative Amount"); }
             balance -= amount;
-            user.Wallet.transactionHistory.Add(new TransactionHistory("Deposit", amount, DateTime.Now));
+            user.Wallet.transactionHistory.Add(new TransactionHistory("Withdraw", amount, DateTime.Now));
 
+        }
+        public override string ToString()
+        {
+            return $"User: {user.FirstName} {user.LastName}, Balance: {balance}";
         }
     }
 }

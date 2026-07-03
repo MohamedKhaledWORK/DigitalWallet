@@ -11,7 +11,7 @@ namespace DigitalWallet.ProgramSystem
     {
         ManageWallet manageWallet = new ManageWallet();
         bool flag;
-        Users user;
+        User user;
         public void UserChoice(int choice)
         {
             switch (choice)
@@ -64,7 +64,7 @@ namespace DigitalWallet.ProgramSystem
                     #region Show Wallet Info
                     if (user == null) { Console.WriteLine("User doesn't exist "); break; }
 
-                    user.Wallet.WalletInfo(); 
+                    Console.WriteLine(user.Wallet.ToString());  
                     #endregion
                     break;
                 case 3:
@@ -77,7 +77,7 @@ namespace DigitalWallet.ProgramSystem
                     try
                     {
                         if (user == null) { Console.WriteLine("User doesn't exist "); break; }
-                        user.Wallet.Depoist(amount);
+                        user.Wallet.Deposit(amount);
                         Console.WriteLine("Succsseful operation");
                         Console.WriteLine($"Deposit : {amount}");
                         Console.WriteLine($"Balance : {user.Wallet.Balance()}");
@@ -99,7 +99,7 @@ namespace DigitalWallet.ProgramSystem
                     {
 
                         if (user == null) { Console.WriteLine("User doesn't exist "); break; }
-                        user.Wallet.Wthdraw(amount);
+                        user.Wallet.Withdraw(amount);
                         Console.WriteLine("Succsseful operation");
                         Console.WriteLine($"Withdraw : {amount}");
                         Console.WriteLine($"Balance : {user.Wallet.Balance()}");
